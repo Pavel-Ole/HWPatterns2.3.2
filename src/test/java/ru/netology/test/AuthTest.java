@@ -29,7 +29,7 @@ public class AuthTest {
         $("[name=\"login\"]").setValue(registeredUser.getLogin());
         $("[name=\"password\"]").setValue(registeredUser.getPassword());
         $(".button__text").click();
-        $(".heading.heading_size_l").shouldHave(Condition.visible);
+        $(".heading.heading_size_l").shouldHave(Condition.text("  Личный кабинет"));
 
     }
 
@@ -40,8 +40,8 @@ public class AuthTest {
         $("[name=\"login\"]").setValue(notRegisteredUser.getLogin());
         $("[name=\"password\"]").setValue(notRegisteredUser.getPassword());
         $(".button__text").click();
-        $(".notification__title").shouldHave(Condition.visible, Duration.ofSeconds(15));
-        $(".notification__content").shouldHave(Condition.visible, Duration.ofSeconds(15));
+        $(".notification__title").should(Condition.visible, Duration.ofSeconds(15));
+        $(".notification__content").shouldHave(Condition.text("Неверно указан логин или пароль"), Duration.ofSeconds(15));
 
     }
 
@@ -52,8 +52,8 @@ public class AuthTest {
         $("[name=\"login\"]").setValue(blockedUser.getLogin());
         $("[name=\"password\"]").setValue(blockedUser.getPassword());
         $(".button__text").click();
-        $(".notification__title").shouldHave(Condition.visible, Duration.ofSeconds(15));
-        $(".notification__content").shouldHave(Condition.visible, Duration.ofSeconds(15));
+        $(".notification__title").should(Condition.visible, Duration.ofSeconds(15));
+        $(".notification__content").shouldHave(Condition.text("Пользователь заблокирован"), Duration.ofSeconds(15));
 
     }
 
@@ -65,8 +65,8 @@ public class AuthTest {
         $("[name=\"login\"]").setValue(wrongLogin);
         $("[name=\"password\"]").setValue(registeredUser.getPassword());
         $(".button__text").click();
-        $(".notification__title").shouldHave(Condition.visible, Duration.ofSeconds(15));
-        $(".notification__content").shouldHave(Condition.visible, Duration.ofSeconds(15));
+        $(".notification__title").should(Condition.visible, Duration.ofSeconds(15));
+        $(".notification__content").shouldHave(Condition.text("Неверно указан логин или пароль"), Duration.ofSeconds(15));
 
     }
 
@@ -78,8 +78,8 @@ public class AuthTest {
         $("[name=\"login\"]").setValue(registeredUser.getLogin());
         $("[name=\"password\"]").setValue(wrongPassword);
         $(".button__text").click();
-        $(".notification__title").shouldHave(Condition.visible, Duration.ofSeconds(15));
-        $(".notification__content").shouldHave(Condition.visible, Duration.ofSeconds(15));
+        $(".notification__title").should(Condition.visible, Duration.ofSeconds(15));
+        $(".notification__content").shouldHave(Condition.text("Неверно указан логин или пароль"), Duration.ofSeconds(15));
 
     }
 }
